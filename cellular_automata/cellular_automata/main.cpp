@@ -5,6 +5,7 @@ SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
+const int CELL_SIZE = 1;
 
 bool init()
 {
@@ -49,9 +50,25 @@ bool init()
 
 void update()
 {
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(p_renderer);
 	
-	SDL_Delay(16);
+	for (int row = 0; row < SCREEN_HEIGHT / CELL_SIZE; row++)
+	{
+		for (int column = 0; column < SCREEN_WIDTH / CELL_SIZE; column++)
+		{
+			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
+			if (rand() % 2 < 1)
+			{
+				SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
+				SDL_RenderFillRect(p_renderer, &fillRect);
+			}
+		}
+	}
+	
+	SDL_RenderPresent(p_renderer);
+	
+	SDL_Delay(1000);
 }
 
 int main(int argc, const char * argv[])
