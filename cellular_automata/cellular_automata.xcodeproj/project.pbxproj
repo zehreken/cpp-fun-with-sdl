@@ -26,7 +26,7 @@
 
 /* Begin PBXFileReference section */
 		30439D68229727E0005943F0 /* cellular_automata */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cellular_automata; sourceTree = BUILT_PRODUCTS_DIR; };
-		30439D6B229727E0005943F0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		30439D6B229727E0005943F0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		30439D732297303A005943F0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		30439D752297304A005943F0 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +52,8 @@
 				30439D722297303A005943F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
+			wrapsLines = 0;
 		};
 		30439D69229727E0005943F0 /* Products */ = {
 			isa = PBXGroup;
