@@ -1,11 +1,13 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "cell.hpp"
 
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
-const int CELL_SIZE = 1;
+const int CELL_SIZE = 8;
+Cell grid[SCREEN_HEIGHT / CELL_SIZE][SCREEN_WIDTH / CELL_SIZE];
 
 bool init()
 {
@@ -57,6 +59,8 @@ void update()
 	{
 		for (int column = 0; column < SCREEN_WIDTH / CELL_SIZE; column++)
 		{
+			grid[row][column].tick();
+			
 			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
 			if (rand() % 2 < 1)
 			{
@@ -73,6 +77,14 @@ void update()
 
 int main(int argc, const char * argv[])
 {
+	for (int row = 0; row < SCREEN_HEIGHT / CELL_SIZE; row++)
+	{
+		for (int column = 0; column < SCREEN_WIDTH / CELL_SIZE; column++)
+		{
+			grid[row][column].setPosition(row, column);
+		}
+	}
+	
 	if (!init())
 	{
 		printf("Error initializing\n");
