@@ -1,13 +1,12 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "grid.hpp"
 #include "cell.hpp"
 
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
-const int SCREEN_WIDTH = 512;
-const int SCREEN_HEIGHT = 512;
-const int CELL_SIZE = 8;
-Cell grid[SCREEN_HEIGHT / CELL_SIZE][SCREEN_WIDTH / CELL_SIZE];
+
+Cell grid[COLUMN_COUNT][ROW_COUNT];
 
 bool init()
 {
@@ -55,14 +54,12 @@ void update()
 	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(p_renderer);
 	
-	for (int row = 0; row < SCREEN_HEIGHT / CELL_SIZE; row++)
+	for (int row = 0; row < ROW_COUNT; row++)
 	{
-		for (int column = 0; column < SCREEN_WIDTH / CELL_SIZE; column++)
+		for (int column = 0; column < COLUMN_COUNT; column++)
 		{
-			grid[row][column].tick();
-			
 			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
-			if (rand() % 2 < 1)
+			if (grid[column][row].getCurrentState() == 1)
 			{
 				SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
 				SDL_RenderFillRect(p_renderer, &fillRect);
@@ -70,18 +67,34 @@ void update()
 		}
 	}
 	
+	for (int row = 0; row < ROW_COUNT; row++)
+	{
+		for (int column = 0; column < COLUMN_COUNT; column++)
+		{
+			grid[column][row].tick();
+		}
+	}
+	
+	for (int row = 0; row < ROW_COUNT; row++)
+	{
+		for (int column = 0; column < COLUMN_COUNT; column++)
+		{
+			grid[column][row].swap();
+		}
+	}
+	
 	SDL_RenderPresent(p_renderer);
 	
-	SDL_Delay(1000);
+	SDL_Delay(20);
 }
 
 int main(int argc, const char * argv[])
 {
-	for (int row = 0; row < SCREEN_HEIGHT / CELL_SIZE; row++)
+	for (int row = 0; row < ROW_COUNT; row++)
 	{
-		for (int column = 0; column < SCREEN_WIDTH / CELL_SIZE; column++)
+		for (int column = 0; column < COLUMN_COUNT; column++)
 		{
-			grid[row][column].setPosition(row, column);
+			grid[column][row].setPosition(row, column);
 		}
 	}
 	
