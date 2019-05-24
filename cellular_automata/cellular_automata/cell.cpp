@@ -24,43 +24,10 @@ void Cell::setPosition(int row, int column)
 	_currentState = 0;
 	_futureState = 0;
 	
-	if (row == 1 && column == 1)
+	if (rand() % 2 < 1)
 		_currentState = 1;
-	if (row == 1 && column == 2)
-		_currentState = 1;
-	if (row == 1 && column == 3)
-		_currentState = 1;
-	if (row == 1 && column == 4)
-		_currentState = 1;
-	if (row == 2 && column == 5)
-		_currentState = 1;
-	if (row == 2 && column == 6)
-		_currentState = 1;
-	if (row == 2 && column == 7)
-		_currentState = 1;
-	if (row == 2 && column == 8)
-		_currentState = 1;
-	if (row == 2 && column == 9)
-		_currentState = 1;
-	
-	if (row == 1 && column == 21)
-		_currentState = 1;
-	if (row == 1 && column == 22)
-		_currentState = 1;
-	if (row == 1 && column == 23)
-		_currentState = 1;
-	if (row == 1 && column == 24)
-		_currentState = 1;
-	if (row == 2 && column == 25)
-		_currentState = 1;
-	if (row == 2 && column == 26)
-		_currentState = 1;
-	if (row == 2 && column == 27)
-		_currentState = 1;
-	if (row == 2 && column == 28)
-		_currentState = 1;
-	if (row == 2 && column == 29)
-		_currentState = 1;
+	else
+		_currentState = 0;
 	
 	_position.row = row;
 	_position.column = column;
