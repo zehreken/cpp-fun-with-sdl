@@ -35,13 +35,6 @@ bool init()
 			else
 			{
 				SDL_SetRenderDrawColor(p_renderer, 0, 0, 0, 255);
-				
-//				int imgFlags = IMG_INIT_PNG;
-//				if (!(IMG_Init(imgFlags) & imgFlags))
-//				{
-//					printf( "SDL_image could not initialize. SDL_image Error: %s\n", IMG_GetError() );
-//					success = false;
-//				}
 			}
 		}
 	}
@@ -64,13 +57,6 @@ void update()
 				SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
 				SDL_RenderFillRect(p_renderer, &fillRect);
 			}
-		}
-	}
-	
-	for (int row = 0; row < ROW_COUNT; row++)
-	{
-		for (int column = 0; column < COLUMN_COUNT; column++)
-		{
 			grid[column][row].tick();
 		}
 	}

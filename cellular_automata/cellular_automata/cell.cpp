@@ -50,7 +50,6 @@ int Cell::getLiveNeighbourCount()
 			_neighbours[i].column >= 0 &&
 			_neighbours[i].column < COLUMN_COUNT)
 		{
-//			printf("column: %d row: %d state: %d\n", _neighbours[i].column, _neighbours[i].row, grid[_neighbours[i].column][_neighbours[i].row].getCurrentState());
 			count += grid[_neighbours[i].column][_neighbours[i].row].getCurrentState();
 		}
 	}
@@ -61,7 +60,6 @@ void Cell::tick()
 {
 	if (_currentState == 1)
 	{
-		_position;
 		int liveNeighbourCount = getLiveNeighbourCount();
 		if (liveNeighbourCount < 2)
 		{
