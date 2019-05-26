@@ -2,24 +2,9 @@
 #include "grid.hpp"
 #include <iostream>
 
-// neighbours
-// 0 | 1 | 2
-// 7 | x | 3
-// 6 | 5 | 4
-const Point directions[8] =
-{
-	{-1, -1},
-	{-1, 0},
-	{-1, 1},
-	{0, 1},
-	{1, 1},
-	{1, 0},
-	{1, -1},
-	{0, -1},
-};
-//extern Cell grid[COLUMN_COUNT][ROW_COUNT];
-//extern NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
-extern ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+extern NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+//extern ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+//extern MooreCell grid[COLUMN_COUNT][ROW_COUNT];
 
 void Cell::setPosition(int row, int column)
 {
@@ -33,20 +18,24 @@ void Cell::setPosition(int row, int column)
 	
 	_position.row = row;
 	_position.column = column;
-	
-	calculateNeighbours();
 }
 
 void NeumannCell::setPosition(int row, int column)
 {
 	Cell::setPosition(row, column);
-	NeumannCell::calculateNeighbours();
+	calculateNeighbours();
 }
 
 void ExtendedNeumannCell::setPosition(int row, int column)
 {
 	Cell::setPosition(row, column);
-	ExtendedNeumannCell::calculateNeighbours();
+	calculateNeighbours();
+}
+
+void MooreCell::setPosition(int row, int column)
+{
+	Cell::setPosition(row, column);
+	calculateNeighbours();
 }
 
 int Cell::getCurrentState()
@@ -109,10 +98,10 @@ void Cell::swap()
 
 void Cell::calculateNeighbours()
 {
-	for (int i = 0; i < 8; i++)
-	{
-		_neighbours[i] = {_position.row + directions[i].row, _position.column + directions[i].column};
-	}
+//	for (int i = 0; i < 8; i++)
+//	{
+//		_neighbours[i] = {_position.row + directions[i].row, _position.column + directions[i].column};
+//	}
 }
 
 // neighbours
@@ -153,10 +142,38 @@ const Point extendedNeumannDirections[8] =
 	{0, -2},
 	{0, -1},
 };
+
 void ExtendedNeumannCell::calculateNeighbours()
 {
 	for (int i = 0; i < 8; i++)
 	{
 		_neighbours[i] = {_position.row + extendedNeumannDirections[i].row, _position.column + extendedNeumannDirections[i].column};
+	}
+}
+
+// neighbours
+// 0 | 1 | 2
+// 7 | x | 3
+// 6 | 5 | 4
+const Point mooreDirections[8] =
+{
+	{-1, -1},
+	{-1, 0},
+	{-1, 1},
+	{0, 1},
+	{1, 1},
+	{1, 0},
+	{1, -1},
+	{0, -1},
+};
+
+void MooreCell::calculateNeighbours()
+{
+	for (int  i = 0; i < 8; i++)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			_neighbours[i] = {_position.row + mooreDirections[i].row, _position.column + mooreDirections[i].column};
+		}
 	}
 }

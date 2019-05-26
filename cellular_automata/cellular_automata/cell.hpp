@@ -15,7 +15,7 @@ public:
 	void tick();
 	void swap();
 protected:
-	void calculateNeighbours();
+	virtual void calculateNeighbours();
 	Point _position;
 	Point _neighbours[8];
 private:
@@ -42,6 +42,8 @@ protected:
 
 class MooreCell : public Cell
 {
+public:
+	void setPosition(int row, int column);
 protected:
 	void calculateNeighbours();
 };
