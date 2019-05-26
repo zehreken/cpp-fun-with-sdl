@@ -2,17 +2,21 @@
 #include "grid.hpp"
 #include <iostream>
 
-extern NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+//extern NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
 //extern ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
-//extern MooreCell grid[COLUMN_COUNT][ROW_COUNT];
+extern MooreCell grid[COLUMN_COUNT][ROW_COUNT];
 
 void Cell::setPosition(int row, int column)
 {
 	_currentState = 0;
 	_futureState = 0;
+	_switchCounter = 0;
 	
 	if (rand() % 2 < 1)
+	{
 		_currentState = 1;
+		_switchCounter++;
+	}
 	else
 		_currentState = 0;
 	
@@ -71,6 +75,7 @@ void Cell::tick()
 		else if (liveNeighbourCount == 2 || liveNeighbourCount == 3)
 		{
 			_futureState = 1;
+			_switchCounter++;
 		}
 		else
 		{
@@ -83,6 +88,7 @@ void Cell::tick()
 		if (liveNeighbourCount == 3)
 		{
 			_futureState = 1;
+			_switchCounter++;
 		}
 		else
 		{
@@ -94,6 +100,11 @@ void Cell::tick()
 void Cell::swap()
 {
 	_currentState = _futureState;
+}
+
+int Cell::getSwithcCount()
+{
+	return _switchCounter;
 }
 
 // neighbours

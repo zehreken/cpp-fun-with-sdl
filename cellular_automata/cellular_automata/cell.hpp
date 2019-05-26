@@ -14,6 +14,7 @@ public:
 	int getCurrentState();
 	void tick();
 	void swap();
+	int getSwithcCount();
 protected:
 	virtual void calculateNeighbours() {};
 	Point _position;
@@ -22,6 +23,7 @@ private:
 	int _currentState;
 	int _futureState;
 	int getLiveNeighbourCount();
+	int _switchCounter;
 };
 
 class NeumannCell : public Cell

@@ -6,9 +6,9 @@
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 
-NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+//NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
 //ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
-//MooreCell grid[COLUMN_COUNT][ROW_COUNT];
+MooreCell grid[COLUMN_COUNT][ROW_COUNT];
 
 bool init()
 {
@@ -72,8 +72,37 @@ void update()
 	}
 	
 	SDL_RenderPresent(p_renderer);
+}
+
+void renderHeatMap()
+{
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(p_renderer);
 	
-	SDL_Delay(20);
+	int maxSwitchCount = 0;
+	for (int row = 0; row < ROW_COUNT; row++)
+	{
+		for (int column = 0; column < COLUMN_COUNT; column++)
+		{
+			if (grid[column][row].getSwithcCount() > maxSwitchCount)
+			{
+				maxSwitchCount = grid[column][row].getSwithcCount();
+			}
+		}
+	}
+	for (int row = 0; row < ROW_COUNT; row++)
+	{
+		for (int column = 0; column < COLUMN_COUNT; column++)
+		{
+			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
+			float temp = ((float)grid[column][row].getSwithcCount() / maxSwitchCount);
+			int color = temp * 255;
+			SDL_SetRenderDrawColor(p_renderer, color, color, color, 0xFF);
+			SDL_RenderFillRect(p_renderer, &fillRect);
+		}
+	}
+	
+	SDL_RenderPresent(p_renderer);
 }
 
 int main(int argc, const char * argv[])
@@ -93,6 +122,7 @@ int main(int argc, const char * argv[])
 	}
 	
 	bool quit = false;
+	bool isStable = false;
 	while (!quit)
 	{
 		SDL_Event e;
@@ -102,9 +132,23 @@ int main(int argc, const char * argv[])
 			{
 				quit = true;
 			}
+			else if (e.type == SDL_KEYUP)
+			{
+				if (e.key.keysym.sym == SDLK_SPACE)
+				{
+					if (!isStable)
+					{
+						isStable = true;
+						renderHeatMap();
+					}
+				}
+			}
 		}
 		
-		update();
+		if (!isStable)
+			update();
+		
+		SDL_Delay(20);
 	}
 	
 	return 0;
