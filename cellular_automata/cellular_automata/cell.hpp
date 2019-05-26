@@ -15,7 +15,7 @@ public:
 	void tick();
 	void swap();
 protected:
-	virtual void calculateNeighbours();
+	virtual void calculateNeighbours() {};
 	Point _position;
 	Point _neighbours[8];
 private:

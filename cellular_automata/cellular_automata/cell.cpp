@@ -96,14 +96,6 @@ void Cell::swap()
 	_currentState = _futureState;
 }
 
-void Cell::calculateNeighbours()
-{
-//	for (int i = 0; i < 8; i++)
-//	{
-//		_neighbours[i] = {_position.row + directions[i].row, _position.column + directions[i].column};
-//	}
-}
-
 // neighbours
 // 0 | 1 | 2
 // 7 | x | 3
