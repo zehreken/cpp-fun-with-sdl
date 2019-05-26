@@ -17,7 +17,9 @@ const Point directions[8] =
 	{1, -1},
 	{0, -1},
 };
-extern Cell grid[COLUMN_COUNT][ROW_COUNT];
+//extern Cell grid[COLUMN_COUNT][ROW_COUNT];
+//extern NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+extern ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
 
 void Cell::setPosition(int row, int column)
 {
@@ -33,6 +35,18 @@ void Cell::setPosition(int row, int column)
 	_position.column = column;
 	
 	calculateNeighbours();
+}
+
+void NeumannCell::setPosition(int row, int column)
+{
+	Cell::setPosition(row, column);
+	NeumannCell::calculateNeighbours();
+}
+
+void ExtendedNeumannCell::setPosition(int row, int column)
+{
+	Cell::setPosition(row, column);
+	ExtendedNeumannCell::calculateNeighbours();
 }
 
 int Cell::getCurrentState()
@@ -98,5 +112,51 @@ void Cell::calculateNeighbours()
 	for (int i = 0; i < 8; i++)
 	{
 		_neighbours[i] = {_position.row + directions[i].row, _position.column + directions[i].column};
+	}
+}
+
+// neighbours
+// 0 | 1 | 2
+// 7 | x | 3
+// 6 | 5 | 4
+const Point neumannDirections[8] =
+{
+	{-10000, -10000},
+	{-1, 0},
+	{-10000, 10000},
+	{0, 1},
+	{10000, 10000},
+	{1, 0},
+	{10000, -10000},
+	{0, -1},
+};
+void NeumannCell::calculateNeighbours()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		_neighbours[i] = {_position.row + neumannDirections[i].row, _position.column + neumannDirections[i].column};
+	}
+}
+
+// neighbours
+// 0 | 1 | 2
+// 7 | x | 3
+// 6 | 5 | 4
+const Point extendedNeumannDirections[8] =
+{
+	{-2, 0},
+	{-1, 0},
+	{0, 2},
+	{0, 1},
+	{2, 0},
+	{1, 0},
+	{0, -2},
+	{0, -1},
+};
+void ExtendedNeumannCell::calculateNeighbours()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		_neighbours[i] = {_position.row + extendedNeumannDirections[i].row, _position.column + extendedNeumannDirections[i].column};
 	}
 }

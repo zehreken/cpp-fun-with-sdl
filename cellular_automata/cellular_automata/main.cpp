@@ -6,7 +6,9 @@
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 
-Cell grid[COLUMN_COUNT][ROW_COUNT];
+//Cell grid[COLUMN_COUNT][ROW_COUNT];
+//NeumannCell grid[COLUMN_COUNT][ROW_COUNT];
+ExtendedNeumannCell grid[COLUMN_COUNT][ROW_COUNT];
 
 bool init()
 {
