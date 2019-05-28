@@ -95,8 +95,8 @@ void renderHeatMap()
 		for (int column = 0; column < COLUMN_COUNT; column++)
 		{
 			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
-			float temp = ((float)grid[column][row].getSwithcCount() / maxSwitchCount);
-			int color = temp * 255;
+			float normalized = ((float)grid[column][row].getSwithcCount() / maxSwitchCount);
+			int color = 255 - normalized * 255;
 			SDL_SetRenderDrawColor(p_renderer, color, color, color, 0xFF);
 			SDL_RenderFillRect(p_renderer, &fillRect);
 		}
