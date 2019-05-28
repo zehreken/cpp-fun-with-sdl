@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		30996726229DA8FF005F4A82 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30996725229DA8FF005F4A82 /* main.cpp */; };
+		3099672F229DA98E005F4A82 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3099672D229DA98E005F4A82 /* SDL2.framework */; };
+		30996730229DA98E005F4A82 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3099672E229DA98E005F4A82 /* SDL2_image.framework */; };
+		30996733229DBCAE005F4A82 /* perlineNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30996731229DBCAE005F4A82 /* perlineNoise.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,11 @@
 /* Begin PBXFileReference section */
 		30996722229DA8FF005F4A82 /* perlin_noise */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = perlin_noise; sourceTree = BUILT_PRODUCTS_DIR; };
 		30996725229DA8FF005F4A82 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3099672D229DA98E005F4A82 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		3099672E229DA98E005F4A82 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		30996731229DBCAE005F4A82 /* perlineNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = perlineNoise.cpp; sourceTree = "<group>"; };
+		30996732229DBCAE005F4A82 /* perlineNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = perlineNoise.hpp; sourceTree = "<group>"; };
+		30996734229DC2FB005F4A82 /* constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = constants.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3099672F229DA98E005F4A82 /* SDL2.framework in Frameworks */,
+				30996730229DA98E005F4A82 /* SDL2_image.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +53,7 @@
 			children = (
 				30996724229DA8FF005F4A82 /* perlin_noise */,
 				30996723229DA8FF005F4A82 /* Products */,
+				3099672C229DA98E005F4A82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -60,8 +71,20 @@
 			isa = PBXGroup;
 			children = (
 				30996725229DA8FF005F4A82 /* main.cpp */,
+				30996731229DBCAE005F4A82 /* perlineNoise.cpp */,
+				30996732229DBCAE005F4A82 /* perlineNoise.hpp */,
+				30996734229DC2FB005F4A82 /* constants.hpp */,
 			);
 			path = perlin_noise;
+			sourceTree = "<group>";
+		};
+		3099672C229DA98E005F4A82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3099672E229DA98E005F4A82 /* SDL2_image.framework */,
+				3099672D229DA98E005F4A82 /* SDL2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30996733229DBCAE005F4A82 /* perlineNoise.cpp in Sources */,
 				30996726229DA8FF005F4A82 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +266,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -250,6 +278,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
