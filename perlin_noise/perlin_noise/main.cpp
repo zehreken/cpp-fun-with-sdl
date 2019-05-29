@@ -7,8 +7,8 @@
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 
-float Gradient[IYMAX][IXMAX][2];
-float noise[SCREEN_HEIGHT][SCREEN_WIDTH];
+float Gradient[GRAD_ROW_COUNT][GRAD_COLUMN_COUNT][2];
+float noise[ROW_COUNT][COLUMN_COUNT];
 
 bool init()
 {
@@ -49,13 +49,13 @@ void renderNoise()
 	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(p_renderer);
 	
-	const int CELL_SIZE = 1;
-	for (int x = 0; x < IXMAX; x++)
+	for (int column = 0; column < COLUMN_COUNT; column++)
 	{
-		for (int y = 0; y < IYMAX; y++)
+		for (int row = 0; row < ROW_COUNT; row++)
 		{
-			int color = noise[y][x] * 255;
-			SDL_Rect fillRect = {x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE};
+			float n = noise[row][column];
+			int color = (n + 1) / 2 * 255;
+			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
 			SDL_SetRenderDrawColor(p_renderer, color, color, color, 0xFF);
 			SDL_RenderFillRect(p_renderer, &fillRect);
 		}
@@ -66,23 +66,26 @@ void renderNoise()
 
 int main(int argc, const char * argv[])
 {
-	for (int x = 0; x < IXMAX; x++)
+	srand(50);
+	for (int column = 0; column < GRAD_COLUMN_COUNT; column++)
 	{
-		for (int y = 0; y < IYMAX; y++)
+		for (int row = 0; row < GRAD_ROW_COUNT; row++)
 		{
 			float vx = ((float)rand() / RAND_MAX) * 2 - 1;
 			float vy = ((float)rand() / RAND_MAX) * 2 - 1;
 			float length = sqrt(vx * vx + vy * vy);
-			Gradient[y][x][0] = vx / length;
-			Gradient[y][x][1] = vy / length;
+			float nx = vx / length;
+			float ny = vy / length;
+			Gradient[row][column][0] = nx;
+			Gradient[row][column][1] = ny;
 		}
 	}
 	
-	for (int x = 0; x < IXMAX; x++)
+	for (int column = 0; column < COLUMN_COUNT; column++)
 	{
-		for (int y = 0; y < IYMAX; y++)
+		for (int row = 0; row < ROW_COUNT; row++)
 		{
-			noise[y][x] = perlin(y / 512.0, x / 512.0);
+			noise[row][column] = perlin(row / (float)ROW_COUNT, column / (float)COLUMN_COUNT);
 //			std::cout << perlin(y / 512.0, x / 512.0) << "\n";
 //			std::cout << Gradient[y][x][0] << "\n";
 		}
@@ -95,7 +98,7 @@ int main(int argc, const char * argv[])
 	}
 	
 	bool quit = false;
-	bool isStable = false;
+//	bool isStable = false;
 	while (!quit)
 	{
 		SDL_Event e;

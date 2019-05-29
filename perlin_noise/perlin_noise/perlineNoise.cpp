@@ -8,7 +8,7 @@ float lerp(float a0, float a1, float w)
 
 float dotGridGradient(int ix, int iy, float x, float y)
 {
-	extern float Gradient[IYMAX][IXMAX][2];
+	extern float Gradient[GRAD_ROW_COUNT][GRAD_COLUMN_COUNT][2];
 	
 	float dx = x - (float)ix;
 	float dy = y - (float)iy;
@@ -34,7 +34,7 @@ float perlin(float x, float y)
 	
 	n0 = dotGridGradient(x0, y1, x, y);
 	n1 = dotGridGradient(x1, y1, x, y);
-	ix1 = lerp(n0, n1, sy);
+	ix1 = lerp(n0, n1, sx);
 	
 	value = lerp(ix0, ix1, sy);
 	
