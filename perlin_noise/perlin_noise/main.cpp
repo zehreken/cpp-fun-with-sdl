@@ -56,7 +56,7 @@ void renderNoise()
 			float n = noise[row][column];
 			int color = (n + 1) / 2 * 255;
 			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
-			SDL_SetRenderDrawColor(p_renderer, color, color, color, 0xFF);
+			SDL_SetRenderDrawColor(p_renderer, 0, 255 - color, color, 0xFF);
 			SDL_RenderFillRect(p_renderer, &fillRect);
 		}
 	}
@@ -66,7 +66,7 @@ void renderNoise()
 
 int main(int argc, const char * argv[])
 {
-	srand(50);
+	srand(32);
 	for (int column = 0; column < GRAD_COLUMN_COUNT; column++)
 	{
 		for (int row = 0; row < GRAD_ROW_COUNT; row++)
