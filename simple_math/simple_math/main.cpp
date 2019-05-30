@@ -49,7 +49,10 @@ void renderGraph()
 	
 	for (int column = 0; column < SCREEN_WIDTH; column++)
 	{
-		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
+//		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
+//		float y = smoothStep(0.0, 1.0, column / (float)SCREEN_WIDTH);
+		float y = clamp(column / (float)SCREEN_WIDTH, 0.2, 0.8);
+		
 		int iy = y * SCREEN_WIDTH;
 		SDL_Rect fillRect = {column * CELL_SIZE, iy * CELL_SIZE, CELL_SIZE, CELL_SIZE};
 		SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
