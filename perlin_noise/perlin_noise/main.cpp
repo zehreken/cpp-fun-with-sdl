@@ -56,7 +56,8 @@ void renderNoise()
 			float n = noise[row][column];
 			int color = (n + 1) / 2 * 255;
 			SDL_Rect fillRect = {column * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE};
-			SDL_SetRenderDrawColor(p_renderer, 0, 255 - color, color, 0xFF);
+			SDL_SetRenderDrawColor(p_renderer, 0, color, 255 - color, 0xFF);
+//			SDL_SetRenderDrawColor(p_renderer, color, color, color, 0xFF);
 			SDL_RenderFillRect(p_renderer, &fillRect);
 		}
 	}
@@ -66,7 +67,7 @@ void renderNoise()
 
 int main(int argc, const char * argv[])
 {
-	srand(32);
+	srand(2);
 	for (int column = 0; column < GRAD_COLUMN_COUNT; column++)
 	{
 		for (int row = 0; row < GRAD_ROW_COUNT; row++)
@@ -81,13 +82,12 @@ int main(int argc, const char * argv[])
 		}
 	}
 	
+	const float scale = 16.0;
 	for (int column = 0; column < COLUMN_COUNT; column++)
 	{
 		for (int row = 0; row < ROW_COUNT; row++)
 		{
-			noise[row][column] = perlin(row / (float)ROW_COUNT, column / (float)COLUMN_COUNT);
-//			std::cout << perlin(y / 512.0, x / 512.0) << "\n";
-//			std::cout << Gradient[y][x][0] << "\n";
+			noise[row][column] = perlin(column / (float)COLUMN_COUNT * scale, row / (float)ROW_COUNT * scale);
 		}
 	}
 	

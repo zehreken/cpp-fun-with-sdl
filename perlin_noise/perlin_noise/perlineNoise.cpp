@@ -1,6 +1,23 @@
 #include "perlineNoise.hpp"
 #include "constants.hpp"
 
+float clamp(float x, float lower, float upper)
+{
+	if (x < lower)
+		x = lower;
+	else if (x > upper)
+		x = upper;
+	
+	return x;
+}
+
+float smoothstep(float a0, float a1, float w)
+{
+	w = clamp((w - a0) / (a1 - a0), -1, 1);
+	
+	return w * w * (3 - 2 * w);
+}
+
 float lerp(float a0, float a1, float w)
 {
 	return (1.0 - w) * a0 + w * a1;
@@ -31,12 +48,15 @@ float perlin(float x, float y)
 	n0 = dotGridGradient(x0, y0, x, y);
 	n1 = dotGridGradient(x1, y0, x, y);
 	ix0 = lerp(n0, n1, sx);
+//	ix0 = smoothstep(n0, n1, sx);
 	
 	n0 = dotGridGradient(x0, y1, x, y);
 	n1 = dotGridGradient(x1, y1, x, y);
 	ix1 = lerp(n0, n1, sx);
+//	ix1 = smoothstep(n0, n1, sx);
 	
 	value = lerp(ix0, ix1, sy);
+//	value = smoothstep(ix0, ix1, sy);
 	
 	return value;
 }
