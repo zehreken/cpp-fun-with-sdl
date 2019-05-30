@@ -4,6 +4,7 @@
 
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
+const int CELL_SIZE = 1;
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 
@@ -41,6 +42,23 @@ bool init()
 	return success;
 }
 
+void renderGraph()
+{
+	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_RenderClear(p_renderer);
+	
+	for (int column = 0; column < SCREEN_WIDTH; column++)
+	{
+		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
+		int iy = y * SCREEN_WIDTH;
+		SDL_Rect fillRect = {column * CELL_SIZE, iy * CELL_SIZE, CELL_SIZE, CELL_SIZE};
+		SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_RenderFillRect(p_renderer, &fillRect);
+	}
+	
+	SDL_RenderPresent(p_renderer);
+}
+
 int main(int argc, const char * argv[])
 {
 	if (!init())
@@ -63,6 +81,8 @@ int main(int argc, const char * argv[])
 			{
 			}
 		}
+		
+		renderGraph();
 		
 		SDL_Delay(20);
 	}
