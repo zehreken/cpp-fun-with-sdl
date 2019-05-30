@@ -98,7 +98,6 @@ int main(int argc, const char * argv[])
 	}
 	
 	bool quit = false;
-//	bool isStable = false;
 	while (!quit)
 	{
 		SDL_Event e;
@@ -110,19 +109,9 @@ int main(int argc, const char * argv[])
 			}
 			else if (e.type == SDL_KEYUP)
 			{
-//				if (e.key.keysym.sym == SDLK_SPACE)
-//				{
-//					if (!isStable)
-//					{
-//						isStable = true;
-//						renderHeatMap();
-//					}
-//				}
 			}
 		}
 		
-//		if (!isStable)
-//			update();
 		renderNoise();
 		
 		SDL_Delay(20);
