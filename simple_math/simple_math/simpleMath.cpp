@@ -1,4 +1,5 @@
 #include "simpleMath.hpp"
+#include <math.h>
 
 float lerp(float a, float b, float w)
 {
@@ -20,4 +21,9 @@ float smoothStep(float a, float b, float x)
 	x = clamp((x - a) / (b - a), 0.0, 1.0);
 	
 	return x * x * (3 - 2 * x);
+}
+
+float dotProduct(Vector2 v1, Vector2 v2)
+{
+	return sqrt((v1.getX() * v2.getX() + v1.getY() * v2.getY()));
 }
