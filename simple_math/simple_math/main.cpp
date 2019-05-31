@@ -44,41 +44,31 @@ bool init()
 
 void renderLineGraph()
 {
-	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
-	SDL_RenderClear(p_renderer);
-	
 	for (int column = 0; column < SCREEN_WIDTH; column++)
 	{
 //		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
-//		float y = smoothStep(0.0, 1.0, column / (float)SCREEN_WIDTH);
-		float y = clamp(column / (float)SCREEN_WIDTH, 0.2, 0.8);
+		float y = smoothStep(0.0, 1.0, column / (float)SCREEN_WIDTH);
+//		float y = clamp(column / (float)SCREEN_WIDTH, 0.2, 0.8);
 		
 		int iy = y * SCREEN_WIDTH;
 		SDL_Rect fillRect = {column * CELL_SIZE, iy * CELL_SIZE, CELL_SIZE, CELL_SIZE};
-		SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
 		SDL_RenderFillRect(p_renderer, &fillRect);
 	}
-	
-	SDL_RenderPresent(p_renderer);
 }
 
 void renderColorGraph()
 {
-	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
-	SDL_RenderClear(p_renderer);
-	
 	for (int column = 0; column < SCREEN_WIDTH; column++)
 	{
-		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
-//		float y = smoothStep(0.0, 1.0, column / (float)SCREEN_WIDTH);
+//		float y = lerp(0.0, 1.0, column / (float)SCREEN_WIDTH);
+		float y = smoothStep(0.0, 1.0, column / (float)SCREEN_WIDTH);
 //		float y = clamp(column / (float)SCREEN_WIDTH, 0.2, 0.8);
 		
 		SDL_Rect fillRect = {column * CELL_SIZE, 0, CELL_SIZE, SCREEN_HEIGHT};
 		SDL_SetRenderDrawColor(p_renderer, y * 0xFF, y * 0xFF, y * 0xFF, 0xFF);
 		SDL_RenderFillRect(p_renderer, &fillRect);
 	}
-	
-	SDL_RenderPresent(p_renderer);
 }
 
 int main(int argc, const char * argv[])
@@ -93,7 +83,7 @@ int main(int argc, const char * argv[])
 	while (!quit)
 	{
 		SDL_Event e;
-		while(SDL_PollEvent( &e ) != 0)
+		while(SDL_PollEvent(&e) != 0)
 		{
 			if(e.type == SDL_QUIT)
 			{
@@ -104,8 +94,13 @@ int main(int argc, const char * argv[])
 			}
 		}
 		
-//		renderLineGraph();
+		SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
+		SDL_RenderClear(p_renderer);
+		
 		renderColorGraph();
+		renderLineGraph();
+		
+		SDL_RenderPresent(p_renderer);
 		
 		SDL_Delay(20);
 	}
