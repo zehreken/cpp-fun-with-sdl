@@ -27,3 +27,10 @@ float dotProduct(Vector2 v1, Vector2 v2)
 {
 	return sqrt((v1.getX() * v2.getX() + v1.getY() * v2.getY()));
 }
+
+float distance(Vector2 v1, Vector2 v2)
+{
+	Vector2 diff = {v1.getX() - v2.getX(), v1.getY() - v2.getY()};
+	
+	return diff.getMagnitude();
+}

@@ -10,6 +10,10 @@ Triangle::Triangle()
 	
 	calculateCorners();
 	
+	std::cout << distance(_x, _y) << "\n";
+	std::cout << distance(_y, _z) << "\n";
+	std::cout << distance(_z, _x) << "\n";
+	
 	_rad_x = 60 * DEG_TO_RAD;
 	_rad_y = 60 * DEG_TO_RAD;
 	_rad_z = 60 * DEG_TO_RAD;
@@ -17,7 +21,7 @@ Triangle::Triangle()
 
 void Triangle::calculateCorners()
 {
-	const float radius = 100; // outer circle radius
+	const float radius = 10; // outer circle radius
 	_x = {_center.getX() + radius * cos((90 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((90 + _rotation) * DEG_TO_RAD)}; // top
 	_y = {_center.getX() + radius * cos((210 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((210 + _rotation) * DEG_TO_RAD)}; // left
 	_z = {_center.getX() + radius * cos((330 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((330 + _rotation) * DEG_TO_RAD)}; // right
