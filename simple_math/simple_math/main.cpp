@@ -77,6 +77,7 @@ int main(int argc, const char * argv[])
 {
 	primitives_test();
 	triangle_test();
+	Triangle tri;
 	
 	if (!init())
 	{
@@ -102,8 +103,10 @@ int main(int argc, const char * argv[])
 		SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
 		SDL_RenderClear(p_renderer);
 		
-		renderColorGraph();
-		renderLineGraph();
+//		renderColorGraph();
+//		renderLineGraph();
+		tri.rotate(1);
+		tri.draw(p_renderer);
 		
 		SDL_RenderPresent(p_renderer);
 		
