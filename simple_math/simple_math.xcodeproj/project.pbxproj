@@ -11,6 +11,7 @@
 		3014EBC122A05FCA00903172 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3014EBC022A05FCA00903172 /* SDL2.framework */; };
 		3014EBC422A0650400903172 /* simpleMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3014EBC222A0650400903172 /* simpleMath.cpp */; };
 		3018432B22A1C71C0076479C /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3018432922A1C71C0076479C /* primitives.cpp */; };
+		30FDE4D622A2A13E000B485B /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FDE4D422A2A13E000B485B /* triangle.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,8 @@
 		3014EBC322A0650400903172 /* simpleMath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = simpleMath.hpp; sourceTree = "<group>"; };
 		3018432922A1C71C0076479C /* primitives.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = primitives.cpp; sourceTree = "<group>"; };
 		3018432A22A1C71C0076479C /* primitives.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = primitives.hpp; sourceTree = "<group>"; };
+		30FDE4D422A2A13E000B485B /* triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
+		30FDE4D522A2A13E000B485B /* triangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = triangle.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 				3014EBC322A0650400903172 /* simpleMath.hpp */,
 				3018432922A1C71C0076479C /* primitives.cpp */,
 				3018432A22A1C71C0076479C /* primitives.hpp */,
+				30FDE4D422A2A13E000B485B /* triangle.cpp */,
+				30FDE4D522A2A13E000B485B /* triangle.hpp */,
 			);
 			path = simple_math;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				3014EBB922A05FA700903172 /* main.cpp in Sources */,
 				3014EBC422A0650400903172 /* simpleMath.cpp in Sources */,
 				3018432B22A1C71C0076479C /* primitives.cpp in Sources */,
+				30FDE4D622A2A13E000B485B /* triangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 #include "simpleMath.hpp"
-#include <math.h>
+#include <cmath>
 
 float lerp(float a, float b, float w)
 {

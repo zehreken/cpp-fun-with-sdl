@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include "simpleMath.hpp"
 #include "primitives.hpp"
+#include "triangle.hpp"
 
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
@@ -75,6 +76,7 @@ void renderColorGraph()
 int main(int argc, const char * argv[])
 {
 	primitives_test();
+	triangle_test();
 	
 	if (!init())
 	{
