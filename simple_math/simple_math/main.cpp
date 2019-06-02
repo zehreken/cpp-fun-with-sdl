@@ -10,6 +10,9 @@ const int CELL_SIZE = 1;
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
 
+int mouseX;
+int mouseY;
+
 bool init()
 {
 	bool success = true;
@@ -95,6 +98,10 @@ int main(int argc, const char * argv[])
 			{
 				quit = true;
 			}
+			else if (e.type == SDL_MOUSEMOTION)
+			{
+				SDL_GetMouseState(&mouseX, &mouseY);
+			}
 			else if (e.type == SDL_KEYUP)
 			{
 			}
@@ -105,7 +112,8 @@ int main(int argc, const char * argv[])
 		
 //		renderColorGraph();
 //		renderLineGraph();
-		tri.rotate(1);
+//		tri.rotate(1);
+		tri.look(mouseX, mouseY);
 		tri.draw(p_renderer);
 		
 		SDL_RenderPresent(p_renderer);
