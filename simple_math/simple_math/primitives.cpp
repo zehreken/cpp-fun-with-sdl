@@ -31,12 +31,17 @@ float Vector2::getMagnitude()
 	return _magnitude;
 }
 
+Vector2 Vector2::getNormalized()
+{
+	return {_x / getMagnitude(), _y / getMagnitude()};
+}
+
 void primitives_test()
 {
 	Vector2 v1 = {0, 1};
 	Vector2 v2 = {1, 0};
 	
-	std::cout << v1.getX() << " " << v1.getY() << " " << v1.getMagnitude() << "\n";
-	std::cout << v2.getX() << " " << v2.getY() << " " << v2.getMagnitude() << "\n";
+	std::cout << v1.getX() << " " << v1.getY() << " " << v1.getMagnitude() << " " << v1.getNormalized().getMagnitude() << "\n";
+	std::cout << v2.getX() << " " << v2.getY() << " " << v2.getMagnitude() << " " << v2.getNormalized().getMagnitude() << "\n";
 	std::cout << dotProduct(v1, v2) << "\n";
 }

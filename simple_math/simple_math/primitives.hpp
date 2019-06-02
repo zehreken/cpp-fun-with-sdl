@@ -9,6 +9,7 @@ public:
 	float getX();
 	float getY();
 	float getMagnitude();
+	Vector2 getNormalized();
 private:
 	float _x;
 	float _y;

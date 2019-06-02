@@ -3,6 +3,10 @@
 #include <iostream>
 #include <cmath>
 
+const float RAD_90 = 90 * DEG_TO_RAD;
+const float RAD_210 = 210 * DEG_TO_RAD;
+const float RAD_330 = 330 * DEG_TO_RAD;
+
 Triangle::Triangle()
 {
 	_center = {256, 256};
@@ -25,7 +29,7 @@ Triangle::Triangle()
 
 void Triangle::calculateCorners()
 {
-	const float radius = 10; // outer circle radius
+	const float radius = 100; // outer circle radius
 	_x = {_center.getX() + radius * cos((90 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((90 + _rotation) * DEG_TO_RAD)}; // top
 	_y = {_center.getX() + radius * cos((210 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((210 + _rotation) * DEG_TO_RAD)}; // left
 	_z = {_center.getX() + radius * cos((330 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((330 + _rotation) * DEG_TO_RAD)}; // right
@@ -45,7 +49,7 @@ void Triangle::draw(SDL_Renderer *p_renderer)
 	SDL_RenderDrawPoint(p_renderer, _z.getX(), _z.getY());
 	
 	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
-	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _direction.getX(), _direction.getY());
+	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _center.getX() + _direction.getX(), _center.getY() + _direction.getY());
 }
 
 void Triangle::rotate(float degree)
@@ -58,6 +62,7 @@ void Triangle::look(int mouseX, int mouseY)
 {
 	Vector2 diff = {_center.getX() - mouseX, _center.getY() - mouseY};
 	_rotation = atan2(diff.getY(), diff.getX()) * RAD_TO_DEG + 90;
+	_direction = {100 * cos((_rotation - 90) * DEG_TO_RAD), 100 * sin((_rotation - 90) * DEG_TO_RAD)};
 	calculateCorners();
 }
 
