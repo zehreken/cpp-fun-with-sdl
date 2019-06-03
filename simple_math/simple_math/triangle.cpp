@@ -62,7 +62,7 @@ void Triangle::look(int mouseX, int mouseY)
 {
 	Vector2 diff = {_center.getX() - mouseX, _center.getY() - mouseY};
 	_rotation = atan2(diff.getY(), diff.getX()) * RAD_TO_DEG + 90;
-	_direction = {100 * cos((_rotation - 90) * DEG_TO_RAD), 100 * sin((_rotation - 90) * DEG_TO_RAD)};
+	_direction = {100 * cos((_rotation + 90) * DEG_TO_RAD), 100 * sin((_rotation + 90) * DEG_TO_RAD)};
 	calculateCorners();
 }
 
