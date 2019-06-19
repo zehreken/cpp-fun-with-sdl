@@ -114,7 +114,7 @@ int main(int argc, const char * argv[])
 //		renderLineGraph();
 //		tri.rotate(1);
 		tri.look(mouseX, mouseY);
-		tri.moveForward();
+//		tri.moveForward();
 		tri.draw(p_renderer);
 		
 		SDL_RenderPresent(p_renderer);
