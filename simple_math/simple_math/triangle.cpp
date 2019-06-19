@@ -6,6 +6,7 @@
 const float RAD_90 = 90 * DEG_TO_RAD;
 const float RAD_210 = 210 * DEG_TO_RAD;
 const float RAD_330 = 330 * DEG_TO_RAD;
+const float SPEED = 1;
 
 Triangle::Triangle()
 {
@@ -56,6 +57,11 @@ void Triangle::rotate(float degree)
 {
 	_rotation += degree;
 	calculateCorners();
+}
+
+void Triangle::moveForward()
+{
+	_center = {_center.getX() + SPEED * cos((_rotation + 90) * DEG_TO_RAD), _center.getY() + SPEED * sin((_rotation + 90) * DEG_TO_RAD)};
 }
 
 void Triangle::look(int mouseX, int mouseY)
