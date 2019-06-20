@@ -6,7 +6,7 @@
 const float RAD_90 = 90 * DEG_TO_RAD;
 const float RAD_210 = 210 * DEG_TO_RAD;
 const float RAD_330 = 330 * DEG_TO_RAD;
-const float SPEED = 1;
+const float SPEED = 5;
 
 Triangle::Triangle()
 {
@@ -72,11 +72,18 @@ void Triangle::look(int mouseX, int mouseY)
 	float newRotation = atan2(diff.getY(), diff.getX()) * RAD_TO_DEG + 90;
 	if (newRotation < 0)
 		newRotation += 360;
+	if (_rotation < 0)
+		_rotation += 360;
+	if (_rotation > 360)
+		_rotation -= 360;
+	
 	std::cout << _rotation << " " << newRotation << "\n";
 	float rDiff = _rotation - newRotation;
 	rDiff = abs(rDiff);
 
-	if (rDiff > 180)
+	if (rDiff > 180 && _rotation > newRotation)
+		newRotation += 360;
+	else if (rDiff > 180 && _rotation < newRotation)
 		newRotation -= 360;
 	if (_rotation < newRotation)
 		_rotation += 1;
