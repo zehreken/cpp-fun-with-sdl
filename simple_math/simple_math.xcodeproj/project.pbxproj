@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300DAF8222BC13F900503625 /* quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300DAF8022BC13F900503625 /* quaternion.cpp */; };
 		3014EBB922A05FA700903172 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3014EBB822A05FA700903172 /* main.cpp */; };
 		3014EBC122A05FCA00903172 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3014EBC022A05FCA00903172 /* SDL2.framework */; };
 		3014EBC422A0650400903172 /* simpleMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3014EBC222A0650400903172 /* simpleMath.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		300DAF8022BC13F900503625 /* quaternion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = quaternion.cpp; sourceTree = "<group>"; };
+		300DAF8122BC13F900503625 /* quaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = quaternion.hpp; sourceTree = "<group>"; };
 		3014EBB522A05FA700903172 /* simple_math */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = simple_math; sourceTree = BUILT_PRODUCTS_DIR; };
 		3014EBB822A05FA700903172 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3014EBC022A05FCA00903172 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				3018432A22A1C71C0076479C /* primitives.hpp */,
 				30FDE4D422A2A13E000B485B /* triangle.cpp */,
 				30FDE4D522A2A13E000B485B /* triangle.hpp */,
+				300DAF8022BC13F900503625 /* quaternion.cpp */,
+				300DAF8122BC13F900503625 /* quaternion.hpp */,
 			);
 			path = simple_math;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				3014EBB922A05FA700903172 /* main.cpp in Sources */,
 				3014EBC422A0650400903172 /* simpleMath.cpp in Sources */,
 				3018432B22A1C71C0076479C /* primitives.cpp in Sources */,
+				300DAF8222BC13F900503625 /* quaternion.cpp in Sources */,
 				30FDE4D622A2A13E000B485B /* triangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

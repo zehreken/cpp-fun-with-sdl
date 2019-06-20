@@ -38,18 +38,20 @@ void Triangle::calculateCorners()
 
 void Triangle::draw(SDL_Renderer *p_renderer)
 {
-	SDL_SetRenderDrawColor(p_renderer, 0x00, 0xFF, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _x.getX(), _x.getY(), _y.getX(), _y.getY());
-	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(p_renderer, 0x00, 0xFF, 0x00, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _y.getX(), _y.getY(), _z.getX(), _z.getY());
+	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0xFF, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _z.getX(), _z.getY(), _x.getX(), _x.getY());
 	
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawPoint(p_renderer, _center.getX(), _center.getY());
 	SDL_RenderDrawPoint(p_renderer, _x.getX(), _x.getY());
 	SDL_RenderDrawPoint(p_renderer, _y.getX(), _y.getY());
 	SDL_RenderDrawPoint(p_renderer, _z.getX(), _z.getY());
 	
-	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _center.getX() + _direction.getX(), _center.getY() + _direction.getY());
 }
 
@@ -71,10 +73,16 @@ void Triangle::look(int mouseX, int mouseY)
 	if (newRotation < 0)
 		newRotation += 360;
 	std::cout << _rotation << " " << newRotation << "\n";
+	float rDiff = _rotation - newRotation;
+	rDiff = abs(rDiff);
+
+	if (rDiff > 180)
+		newRotation -= 360;
 	if (_rotation < newRotation)
 		_rotation += 1;
 	else
 		_rotation -= 1;
+
 	_direction = {100 * cos((_rotation + 90) * DEG_TO_RAD), 100 * sin((_rotation + 90) * DEG_TO_RAD)};
 	calculateCorners();
 }
