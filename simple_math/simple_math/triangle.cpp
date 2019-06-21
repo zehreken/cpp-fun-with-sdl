@@ -59,8 +59,7 @@ void Triangle::draw(SDL_Renderer *p_renderer)
 
 void Triangle::rotate(float degree) // refactor this to accept radian
 {
-	_rotation += degree;
-	_rotation *= DEG_TO_RAD;
+	_rotation += degree * DEG_TO_RAD;
 	calculateCorners();
 }
 
@@ -72,28 +71,29 @@ void Triangle::moveForward()
 void Triangle::look(int mouseX, int mouseY)
 {
 	Vector2 diff = {_center.getX() - mouseX, _center.getY() - mouseY};
-	float newRotation = atan2(diff.getY(), diff.getX());
-	if (newRotation < 0)
-		newRotation += 2 * PI;
-	if (_rotation < 0)
-		_rotation += 2 * PI;
-	if (_rotation > 2 * PI)
-		_rotation -= 2 * PI;
+	float newRotation = atan2(diff.getY(), diff.getX()) + PI;
 	
 	float rDiff = _rotation - newRotation;
 	std::cout << _rotation << " " << newRotation << " " << rDiff << "\n";
 	rDiff = abs(rDiff);
-//	if (rDiff > 5)
+	if (rDiff > PI / 50)
 	{
-	if (rDiff > PI && _rotation > newRotation)
-		newRotation += 2 * PI;
-	else if (rDiff > PI && _rotation < newRotation)
-		newRotation -= 2 * PI;
-	if (_rotation < newRotation)
-		_rotation += ROTATION_SPEED;
-	else
-		_rotation -= ROTATION_SPEED;
+		if (rDiff > PI && _rotation > newRotation)
+			newRotation += 2 * PI;
+		else if (rDiff > PI && _rotation < newRotation)
+			newRotation -= 2 * PI;
+		
+		if (_rotation < newRotation)
+			_rotation += ROTATION_SPEED;
+		else
+			_rotation -= ROTATION_SPEED;
 	}
+	
+	// Keep rotation in range 0 - 2PI
+	if (_rotation < 0)
+		_rotation += 2 * PI;
+	if (_rotation > 2 * PI)
+		_rotation -= 2 * PI;
 
 	_direction = {100 * cos(_rotation), 100 * sin(_rotation)};
 	calculateCorners();
