@@ -6,7 +6,8 @@
 const float RAD_90 = 90 * DEG_TO_RAD;
 const float RAD_210 = 210 * DEG_TO_RAD;
 const float RAD_330 = 330 * DEG_TO_RAD;
-const float SPEED = 5;
+const float SPEED = 3;
+const float ROTATION_SPEED = 2;
 
 Triangle::Triangle()
 {
@@ -77,18 +78,20 @@ void Triangle::look(int mouseX, int mouseY)
 	if (_rotation > 360)
 		_rotation -= 360;
 	
-	std::cout << _rotation << " " << newRotation << "\n";
 	float rDiff = _rotation - newRotation;
+	std::cout << _rotation << " " << newRotation << " " << rDiff << "\n";
 	rDiff = abs(rDiff);
-
+	if (rDiff > 5)
+	{
 	if (rDiff > 180 && _rotation > newRotation)
 		newRotation += 360;
 	else if (rDiff > 180 && _rotation < newRotation)
 		newRotation -= 360;
 	if (_rotation < newRotation)
-		_rotation += 1;
+		_rotation += ROTATION_SPEED;
 	else
-		_rotation -= 1;
+		_rotation -= ROTATION_SPEED;
+	}
 
 	_direction = {100 * cos((_rotation + 90) * DEG_TO_RAD), 100 * sin((_rotation + 90) * DEG_TO_RAD)};
 	calculateCorners();
