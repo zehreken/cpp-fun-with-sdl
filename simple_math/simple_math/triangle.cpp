@@ -7,7 +7,7 @@ const float RAD_90 = 90 * DEG_TO_RAD;
 const float RAD_210 = 210 * DEG_TO_RAD;
 const float RAD_330 = 330 * DEG_TO_RAD;
 const float SPEED = 3;
-const float ROTATION_SPEED = 2;
+const float ROTATION_SPEED = 2 * DEG_TO_RAD;
 
 Triangle::Triangle()
 {
@@ -32,9 +32,9 @@ Triangle::Triangle()
 void Triangle::calculateCorners()
 {
 	const float radius = 100; // outer circle radius
-	_x = {_center.getX() + radius * cos((90 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((90 + _rotation) * DEG_TO_RAD)}; // top
-	_y = {_center.getX() + radius * cos((210 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((210 + _rotation) * DEG_TO_RAD)}; // left
-	_z = {_center.getX() + radius * cos((330 + _rotation) * DEG_TO_RAD), _center.getY() + radius * sin((330 + _rotation) * DEG_TO_RAD)}; // right
+	_x = {_center.getX() + radius * cos(RAD_90 + _rotation), _center.getY() + radius * sin(RAD_90 + _rotation)}; // top
+	_y = {_center.getX() + radius * cos(RAD_210 + _rotation), _center.getY() + radius * sin(RAD_210 + _rotation)}; // left
+	_z = {_center.getX() + radius * cos(RAD_330 + _rotation), _center.getY() + radius * sin(RAD_330 + _rotation)}; // right
 }
 
 void Triangle::draw(SDL_Renderer *p_renderer)
@@ -59,41 +59,42 @@ void Triangle::draw(SDL_Renderer *p_renderer)
 void Triangle::rotate(float degree)
 {
 	_rotation += degree;
+	_rotation *= DEG_TO_RAD;
 	calculateCorners();
 }
 
 void Triangle::moveForward()
 {
-	_center = {_center.getX() + SPEED * cos((_rotation + 90) * DEG_TO_RAD), _center.getY() + SPEED * sin((_rotation + 90) * DEG_TO_RAD)};
+	_center = {_center.getX() + SPEED * cos(_rotation + RAD_90), _center.getY() + SPEED * sin(_rotation + RAD_90)};
 }
 
 void Triangle::look(int mouseX, int mouseY)
 {
 	Vector2 diff = {_center.getX() - mouseX, _center.getY() - mouseY};
-	float newRotation = atan2(diff.getY(), diff.getX()) * RAD_TO_DEG + 90;
+	float newRotation = atan2(diff.getY(), diff.getX()) + RAD_90;
 	if (newRotation < 0)
-		newRotation += 360;
+		newRotation += 2 * PI;
 	if (_rotation < 0)
-		_rotation += 360;
-	if (_rotation > 360)
-		_rotation -= 360;
+		_rotation += 2 * PI;
+	if (_rotation > 2 * PI)
+		_rotation -= 2 * PI;
 	
 	float rDiff = _rotation - newRotation;
 	std::cout << _rotation << " " << newRotation << " " << rDiff << "\n";
 	rDiff = abs(rDiff);
-	if (rDiff > 5)
+//	if (rDiff > 5)
 	{
-	if (rDiff > 180 && _rotation > newRotation)
-		newRotation += 360;
-	else if (rDiff > 180 && _rotation < newRotation)
-		newRotation -= 360;
+	if (rDiff > PI && _rotation > newRotation)
+		newRotation += 2 * PI;
+	else if (rDiff > PI && _rotation < newRotation)
+		newRotation -= 2 * PI;
 	if (_rotation < newRotation)
 		_rotation += ROTATION_SPEED;
 	else
 		_rotation -= ROTATION_SPEED;
 	}
 
-	_direction = {100 * cos((_rotation + 90) * DEG_TO_RAD), 100 * sin((_rotation + 90) * DEG_TO_RAD)};
+	_direction = {100 * cos(_rotation + RAD_90), 100 * sin(_rotation + RAD_90)};
 	calculateCorners();
 }
 
