@@ -16,9 +16,9 @@ private:
 	Vector2 _center;
 	float _rotation;
 	Vector2 _direction;
-	Vector2 _x;
-	Vector2 _y;
-	Vector2 _z;
+	Vector2 _a;
+	Vector2 _b;
+	Vector2 _c;
 	float _rad_x;
 	float _rad_y;
 	float _rad_z;
