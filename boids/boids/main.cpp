@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include <math.h>
 #include "triangle.hpp"
+#include "boid.hpp"
+#include "globals.h"
 
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
@@ -53,7 +55,6 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 	
-	const int BOID_COUNT = 100;
 	Triangle tris[BOID_COUNT];
 	
 	bool quit = false;
