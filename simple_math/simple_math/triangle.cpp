@@ -32,7 +32,7 @@ Triangle::Triangle()
 
 void Triangle::calculateCorners()
 {
-	const float radius = 100; // outer circle radius
+	const float radius = 10; // outer circle radius
 	_a = {_center.getX() + radius * cos(RAD_0 + _rotation), _center.getY() + radius * sin(RAD_0 + _rotation)}; // top
 	_b = {_center.getX() + radius * cos(RAD_120 + _rotation), _center.getY() + radius * sin(RAD_120 + _rotation)}; // left
 	_c = {_center.getX() + radius * cos(RAD_240 + _rotation), _center.getY() + radius * sin(RAD_240 + _rotation)}; // right
@@ -95,7 +95,7 @@ void Triangle::look(int mouseX, int mouseY)
 	if (_rotation > 2 * PI)
 		_rotation -= 2 * PI;
 
-	_direction = {100 * cos(_rotation), 100 * sin(_rotation)};
+	_direction = {20 * cos(_rotation), 20 * sin(_rotation)};
 	calculateCorners();
 }
 
