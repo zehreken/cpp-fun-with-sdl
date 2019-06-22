@@ -10,6 +10,7 @@
 		300A1CA222BE531800F5CB66 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300A1C9E22BE531800F5CB66 /* triangle.cpp */; };
 		300A1CA322BE531800F5CB66 /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300A1CA122BE531800F5CB66 /* primitives.cpp */; };
 		300A1CA622BE535000F5CB66 /* simpleMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300A1CA422BE535000F5CB66 /* simpleMath.cpp */; };
+		300CC39122BEA828007BAEA5 /* boid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300CC38F22BEA828007BAEA5 /* boid.cpp */; };
 		30FE4A4622A5A86700B345F0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FE4A4522A5A86700B345F0 /* main.cpp */; };
 		30FE4A4F22A5A88600B345F0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FE4A4D22A5A88600B345F0 /* SDL2.framework */; };
 		30FE4A5022A5A88600B345F0 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FE4A4E22A5A88600B345F0 /* SDL2_image.framework */; };
@@ -34,6 +35,8 @@
 		300A1CA122BE531800F5CB66 /* primitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = primitives.cpp; path = ../../simple_math/simple_math/primitives.cpp; sourceTree = "<group>"; };
 		300A1CA422BE535000F5CB66 /* simpleMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = simpleMath.cpp; path = ../../simple_math/simple_math/simpleMath.cpp; sourceTree = "<group>"; };
 		300A1CA522BE535000F5CB66 /* simpleMath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = simpleMath.hpp; path = ../../simple_math/simple_math/simpleMath.hpp; sourceTree = "<group>"; };
+		300CC38F22BEA828007BAEA5 /* boid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = boid.cpp; sourceTree = "<group>"; };
+		300CC39022BEA828007BAEA5 /* boid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = boid.hpp; sourceTree = "<group>"; };
 		30FE4A4222A5A86700B345F0 /* boids */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = boids; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FE4A4522A5A86700B345F0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30FE4A4D22A5A88600B345F0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				300A1C9E22BE531800F5CB66 /* triangle.cpp */,
 				300A1CA022BE531800F5CB66 /* triangle.hpp */,
 				30FE4A4522A5A86700B345F0 /* main.cpp */,
+				300CC38F22BEA828007BAEA5 /* boid.cpp */,
+				300CC39022BEA828007BAEA5 /* boid.hpp */,
 			);
 			path = boids;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				30FE4A4622A5A86700B345F0 /* main.cpp in Sources */,
 				300A1CA222BE531800F5CB66 /* triangle.cpp in Sources */,
 				300A1CA322BE531800F5CB66 /* primitives.cpp in Sources */,
+				300CC39122BEA828007BAEA5 /* boid.cpp in Sources */,
 				300A1CA622BE535000F5CB66 /* simpleMath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
