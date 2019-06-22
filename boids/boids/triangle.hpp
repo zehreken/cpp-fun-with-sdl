@@ -8,9 +8,11 @@ class Triangle
 {
 public:
 	Triangle();
+	void setPosition(Vector2 pos);
+	void setRotation(float rotation);
 	void draw(SDL_Renderer *p_renderer);
 	void rotate(float degree); // Rotates around triangle, unit is degree
-    void moveForward();
+	void moveForward();
 	void look(int mouseX, int mouseY);
 private:
 	Vector2 _center;

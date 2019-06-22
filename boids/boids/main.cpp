@@ -55,8 +55,6 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 	
-	Triangle tris[BOID_COUNT];
-	
 	bool quit = false;
 	while (!quit)
 	{
@@ -81,9 +79,10 @@ int main(int argc, const char * argv[])
 		
 		for (int i = 0; i < BOID_COUNT; i++)
 		{
-			tris[i].moveForward();
-			tris[i].look(mouseX, mouseY);
-			tris[i].draw(p_renderer);
+//			tris[i].moveForward();
+//			tris[i].look(mouseX, mouseY);
+//			tris[i].draw(p_renderer);
+			boids[i].update(p_renderer, 1, mouseX, mouseY);
 		}
 		
 		SDL_RenderPresent(p_renderer);

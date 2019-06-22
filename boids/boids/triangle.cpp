@@ -6,8 +6,6 @@
 const float RAD_0 = 0 * DEG_TO_RAD;
 const float RAD_120 = 120 * DEG_TO_RAD;
 const float RAD_240 = 240 * DEG_TO_RAD;
-const float SPEED = 3;
-const float ROTATION_SPEED = 2 * DEG_TO_RAD;
 
 Triangle::Triangle()
 {
@@ -32,6 +30,16 @@ Triangle::Triangle()
 	_rad_z = 60 * DEG_TO_RAD;
 }
 
+void Triangle::setPosition(Vector2 pos)
+{
+	_center = pos;
+}
+
+void Triangle::setRotation(float rotation)
+{
+	_rotation = rotation;
+}
+
 void Triangle::calculateCorners()
 {
 	const float radius = 10; // outer circle radius
@@ -42,6 +50,7 @@ void Triangle::calculateCorners()
 
 void Triangle::draw(SDL_Renderer *p_renderer)
 {
+	calculateCorners();
 	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _a.getX(), _a.getY(), _b.getX(), _b.getY());
 	SDL_SetRenderDrawColor(p_renderer, 0x00, 0xFF, 0x00, 0xFF);
@@ -56,7 +65,7 @@ void Triangle::draw(SDL_Renderer *p_renderer)
 	SDL_RenderDrawPoint(p_renderer, _c.getX(), _c.getY());
 	
 	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _center.getX() + _direction.getX(), _center.getY() + _direction.getY());
+	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _a.getX(), _a.getY());
 }
 
 void Triangle::rotate(float degree) // refactor this to accept radian
@@ -67,7 +76,7 @@ void Triangle::rotate(float degree) // refactor this to accept radian
 
 void Triangle::moveForward()
 {
-	_center = {_center.getX() + SPEED * cos(_rotation), _center.getY() + SPEED * sin(_rotation)};
+//	_center = {_center.getX() + SPEED * cos(_rotation), _center.getY() + SPEED * sin(_rotation)};
 }
 
 void Triangle::look(int mouseX, int mouseY)
@@ -84,10 +93,10 @@ void Triangle::look(int mouseX, int mouseY)
 		else if (rDiff > PI && _rotation < newRotation)
 			newRotation -= 2 * PI;
 		
-		if (_rotation < newRotation)
-			_rotation += ROTATION_SPEED;
-		else
-			_rotation -= ROTATION_SPEED;
+//		if (_rotation < newRotation)
+//			_rotation += ROTATION_SPEED;
+//		else
+//			_rotation -= ROTATION_SPEED;
 	}
 	
 	// Keep rotation in range 0 - 2PI

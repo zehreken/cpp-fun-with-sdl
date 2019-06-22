@@ -8,12 +8,11 @@ class Boid
 {
 public:
 	Boid();
-	void update(float deltaTime);
-	Vector2 _position;
+	void update(SDL_Renderer *p_renderer, float deltaTime, int mouseX, int mouseY);
+	Vector2 _position; // make this private
 private:
 	float _rotation;
 	Triangle _triangle;
-	void draw(SDL_Renderer *p_renderer);
 	void moveForward();
 	void look(Vector2 target);
 	Vector2 ruleOne(); // Separation
