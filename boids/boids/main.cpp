@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <math.h>
+#include "triangle.hpp"
 
 const int SCREEN_WIDTH = 512;
 const int SCREEN_HEIGHT = 512;
@@ -52,6 +53,9 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 	
+	const int BOID_COUNT = 100;
+	Triangle tris[BOID_COUNT];
+	
 	bool quit = false;
 	while (!quit)
 	{
@@ -70,6 +74,18 @@ int main(int argc, const char * argv[])
 			{
 			}
 		}
+		
+		SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0x00, 0xFF);
+		SDL_RenderClear(p_renderer);
+		
+		for (int i = 0; i < BOID_COUNT; i++)
+		{
+			tris[i].moveForward();
+			tris[i].look(mouseX, mouseY);
+			tris[i].draw(p_renderer);
+		}
+		
+		SDL_RenderPresent(p_renderer);
 		
 		SDL_Delay(20);
 	}

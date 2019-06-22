@@ -11,7 +11,9 @@ const float ROTATION_SPEED = 2 * DEG_TO_RAD;
 
 Triangle::Triangle()
 {
-	_center = {256, 256};
+	float randX = rand() % 100;
+	float randY = rand() % 100;
+	_center = {randX, randY};
 	_rotation = 0;
 	_direction = {_center.getX() + 0, _center.getY() + 20};
 	
@@ -74,7 +76,6 @@ void Triangle::look(int mouseX, int mouseY)
 	float newRotation = atan2(diff.getY(), diff.getX()) + PI;
 	
 	float rDiff = _rotation - newRotation;
-	std::cout << _rotation << " " << newRotation << " " << rDiff << "\n";
 	rDiff = abs(rDiff);
 	if (rDiff > PI / 50)
 	{
