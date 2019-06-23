@@ -3,9 +3,8 @@
 
 #include "simpleMath.hpp"
 
-const float SPEED = 3;
-const float ROTATION_SPEED = 2 * DEG_TO_RAD;
-const int BOID_COUNT = 100;
-static Boid boids[BOID_COUNT];
+const float SPEED = 5;
+const float ROTATION_SPEED = 5 * DEG_TO_RAD;
+const int BOID_COUNT = 200;
 
 #endif /* globals_h */

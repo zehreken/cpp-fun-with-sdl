@@ -42,7 +42,7 @@ void Triangle::setRotation(float rotation)
 
 void Triangle::calculateCorners()
 {
-	const float radius = 10; // outer circle radius
+	const float radius = 6; // outer circle radius
 	_a = {_center.getX() + radius * cos(RAD_0 + _rotation), _center.getY() + radius * sin(RAD_0 + _rotation)}; // top
 	_b = {_center.getX() + radius * cos(RAD_120 + _rotation), _center.getY() + radius * sin(RAD_120 + _rotation)}; // left
 	_c = {_center.getX() + radius * cos(RAD_240 + _rotation), _center.getY() + radius * sin(RAD_240 + _rotation)}; // right
@@ -51,34 +51,40 @@ void Triangle::calculateCorners()
 void Triangle::draw(SDL_Renderer *p_renderer)
 {
 	calculateCorners();
-	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0x00, 0x00, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _a.getX(), _a.getY(), _b.getX(), _b.getY());
-	SDL_SetRenderDrawColor(p_renderer, 0x00, 0xFF, 0x00, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0x00, 0xFF, 0x00, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _b.getX(), _b.getY(), _c.getX(), _c.getY());
-	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0xFF, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0x00, 0x00, 0xFF, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _c.getX(), _c.getY(), _a.getX(), _a.getY());
 	
-	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawPoint(p_renderer, _center.getX(), _center.getY());
 	SDL_RenderDrawPoint(p_renderer, _a.getX(), _a.getY());
 	SDL_RenderDrawPoint(p_renderer, _b.getX(), _b.getY());
 	SDL_RenderDrawPoint(p_renderer, _c.getX(), _c.getY());
 	
-	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//	SDL_SetRenderDrawColor(p_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawLine(p_renderer, _center.getX(), _center.getY(), _a.getX(), _a.getY());
 }
 
+// Obsolete
 void Triangle::rotate(float degree) // refactor this to accept radian
 {
 	_rotation += degree * DEG_TO_RAD;
 	calculateCorners();
 }
 
+// Obsolete
 void Triangle::moveForward()
 {
 //	_center = {_center.getX() + SPEED * cos(_rotation), _center.getY() + SPEED * sin(_rotation)};
 }
 
+// Obsolete
 void Triangle::look(int mouseX, int mouseY)
 {
 	Vector2 diff = {_center.getX() - mouseX, _center.getY() - mouseY};

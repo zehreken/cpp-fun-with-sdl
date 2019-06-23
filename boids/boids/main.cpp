@@ -5,10 +5,11 @@
 #include "boid.hpp"
 #include "globals.h"
 
-const int SCREEN_WIDTH = 512;
+const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 512;
 SDL_Window *p_window;
 SDL_Renderer *p_renderer;
+extern Boid boids[BOID_COUNT];
 
 int mouseX;
 int mouseY;

@@ -9,8 +9,9 @@ class Boid
 public:
 	Boid();
 	void update(SDL_Renderer *p_renderer, float deltaTime, int mouseX, int mouseY);
-	Vector2 _position; // make this private
+	Vector2 getPosition();
 private:
+	Vector2 _position;
 	float _rotation;
 	Triangle _triangle;
 	void moveForward();
