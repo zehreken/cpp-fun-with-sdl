@@ -17,7 +17,7 @@ void Boid::update(SDL_Renderer *p_renderer, float deltaTime, int mouseX, int mou
 	Vector2 diff = Vector2{mouseX - _position.getX(), mouseY - _position.getY()};
 	Vector2 v1 = ruleOne();
 	Vector2 v3 = ruleThree();
-	diff = Vector2{diff.getX() * 4 + v1.getX(), diff.getY() * 4 + v1.getY()}; // Separation
+	diff = Vector2{diff.getX() * 2 + v1.getX(), diff.getY() * 2 + v1.getY()}; // Separation
 	diff = Vector2{diff.getX() - v3.getX() * 40, diff.getY() - v3.getY() * 40};
 	float newRotation = atan2(diff.getY(), diff.getX());
 	
@@ -71,7 +71,7 @@ Vector2 Boid::ruleOne() // Separation
 		if (this != &boids[i])
 		{
 			Boid temp = boids[i];
-			if (distance(_position, temp.getPosition()) < 5)
+			if (distance(_position, temp.getPosition()) < 2)
 			{
 				v1 = {v1.getX() + temp.getPosition().getX(), v1.getY() + temp.getPosition().getY()};
 				neighbourCount++;
